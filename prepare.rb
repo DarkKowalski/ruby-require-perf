@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
 require 'fileutils'
 
 class FileTemplate
@@ -30,7 +33,7 @@ class Compiler
   end
 
   def self.compile_tmp
-    source = Dir["./tmp/**/*.rb"]
+    source = Dir['./tmp/**/*.rb']
     source.each do |src|
       dst = "#{src}.rbc"
       Compiler.compile(src, dst)
@@ -43,6 +46,7 @@ FileUtils.mkdir_p './tmp'
 
 # Ruby 3.0.1 amd64
 # Change this, then `ruby prepare.rb && ruby benchmark.rb`
-FileGenerator.generate(file_num: 10000, line_num: 10_000)
+FileGenerator.generate(file_num: 1000, line_num: 10_000)
 
-Compiler.compile_tmp
+# Enable pre-compilation
+# Compiler.compile_tmp
